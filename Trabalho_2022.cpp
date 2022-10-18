@@ -164,11 +164,3 @@ void insAnt(){
     else
         cout << "Lista cheia\n";
 }
-
-//teste github
-
-
-
-
-
-
