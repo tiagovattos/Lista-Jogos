@@ -7,7 +7,7 @@ using namespace std;
 
 //tipos de dados
 struct jogos{
-    string id, data, dev, nome;
+    string id, data, dev, nome;  // troquei descricao por nome
     float valor;
     };
 
