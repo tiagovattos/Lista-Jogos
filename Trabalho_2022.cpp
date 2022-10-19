@@ -2,12 +2,11 @@
 // Bibliotecas da linguagem
 #include <iostream>
 #include <iomanip>
-#include <string>
 using namespace std;
 
 //tipos de dados
 struct jogos{
-    string id, data, dev, nome;  // troquei descricao por nome
+    string nome, id, data, dev;  // troquei descricao por nome
     float valor;
     };
 
@@ -20,6 +19,7 @@ int inicio=0, fim=-1, i, j, x;
 char y, conf;
 
 //prototipo de funcoes
+void preencher();
 void imprimir();
 void adcNoFim();
 void insPorNomeAnt();
@@ -27,6 +27,7 @@ void remPorData();
 
 //programa principal
 int main(){
+    preencher();
     x = -1;
     while(x!= 0){
         system("cls");
@@ -69,6 +70,14 @@ int main(){
 
 
 //corpo das funcoes
+void preencher(){
+    //lista[n] = {"Nome", "Id", "Data", "Desenvolvedor", valor};fim++;
+    lista[0] = {"God Of War", "19", "29/09/2024", "Santa Monica Studio", 230};fim++;
+    lista[1] = {"Mario", "5", "09/08/2023", "Nintendo", 50};fim++;
+    lista[2] = {"Valorant", "8", "02/06/2021", "Riot Games", 0};fim++;
+    lista[3] = {"Until Down", "17", "29/02/2018", "Supermassive Games", 130};fim++;
+    lista[4] = {"The Last Of Us", "23", "09/04/2018", "Naughty Dog", 300};fim++;
+}
 void imprimir(){
     system("cls");
     if(fim != -1){
@@ -90,7 +99,7 @@ void imprimir(){
 
 void adcNoFim(){
     system("cls");  // limpar tela
-    if(fim < T-1){
+    if(fim != T-1){
         cout << "Adicionar no ao final da lista\n";
         cout << "\n\nNovo No " << fim + 1 << "\n\n";
         cout << "Nome: ";
@@ -122,47 +131,48 @@ void adcNoFim(){
 void insPorNomeAnt(){
     string buscNome;
     system("cls");
-    if(fim < T-1){
+    if(fim != T-1){
         if(fim != -1){
             cout << "Procurar No por nome e inserir um novo anterior ao no encontrado.\n\n";
             cout << "Nome: ";
             cin.ignore();
             getline(cin, buscNome);
-            for(i=inicio;i<=fim;i++)
-                if(buscNome == lista[i].nome){
-                    cout << "Nome encontrado - No " << i;
-                    cout << "\n\nNovo No " << i << endl;
-                    cout << "Nome: ";
-                    getline(cin, val.nome);  // cin.ignore() comendo primeiro caractere
-                    cout << "id: ";
-                    cin >> val.id;
-                    cout << "Data de lancamento(DD/MM/AAAA): ";
-                    cin >> val.data;
-                    cout << "Desenvolvedora: ";
-                    cin.ignore();
-                    getline(cin, val.dev);
-                    cout << "Valor: R$";
-                    cin >> val.valor;
-                    cout << "\nConfirma?[S][N] ";
-                    cin >> conf;
-                    if(conf == 'S'){
-                        aux = lista[i];
-                        lista[i] = val;
+            i = inicio;
+            while((i<fim) && (lista[i].nome != buscNome))
+                i++;
+            if(lista[i].nome == buscNome){
+                cout << "Nome encontrado - No " << i;
+                cout << "\n\nNovo No " << i << endl;
+                cout << "Nome: ";
+                getline(cin, val.nome);  // cin.ignore() comendo primeiro caractere
+                cout << "id: ";
+                cin >> val.id;
+                cout << "Data de lancamento(DD/MM/AAAA): ";
+                cin >> val.data;
+                cout << "Desenvolvedora: ";
+                cin.ignore();
+                getline(cin, val.dev);
+                cout << "Valor: R$";
+                cin >> val.valor;
+                cout << "\nConfirma?[S][N] ";
+                cin >> conf;
+                if(conf == 'S'){
+                    aux = lista[i];
+                    lista[i] = val;
+                    i++;
+                    fim++;
+                    while(i<=fim){
+                        aux2 = lista[i];
+                        lista[i] = aux;
+                        aux = aux2;
                         i++;
-                        fim++;
-                        while(i<=fim){
-                            aux2 = lista[i];
-                            lista[i] = aux;
-                            aux = aux2;
-                            i++;
-                        }
                     }
-                    else
-                        cout << "Dados nao confirmados.\n";
-                    break;
                 }
-                if(i==fim+1)
-                    cout << "Nome nao encontrado\n";
+                else
+                    cout << "Dados nao confirmados.\n";
+            }
+            else
+                cout << "Nome nao encontrado\n";
             }
         else
             cout << "Lista vazia.\n";
@@ -178,24 +188,26 @@ void remPorData(){
         cout << "Procurar No por data de lancamento e remover\n\n";
         cout << "Data de lancamento[DD/MM/AAAA]: ";
         cin >> buscData;
-        for(i=inicio; i<=fim; i++)
-            if(buscData == lista[i].data){
-                system("cls");
-                cout << "Data encontrada - No " << i;
-                cout << "\nConfirma?[S][N] ";
-                cin >> conf;
-                if(conf == 'S'){
-                    for(j=i; j<=fim; j++){
-                        lista[j] = lista[j+1];
-                    }
-                    fim--;
+        i = inicio;
+        while((i<fim) && (lista[i].data != buscData))
+            i++;
+        if(lista[i].data == buscData){
+            system("cls");
+            cout << "Data encontrada\n\n";
+            cout << "Confirma remocao?[S][N] ";
+            cin >> conf;
+            if(conf == 'S'){
+                while(i<fim){
+                    lista[i] = lista[i+1];
+                    i++;
                 }
-                else
-                    cout << "Dados nao confirmados\n";
-                break;
+                fim--;
             }
-            if(i==fim+1)
-                cout << "Data nao encontrada\n";
+            else
+                cout << "Dados nao confirmados\n";
+        }
+        else
+            cout << "Data nao encontrada\n";
     }
     else
         cout << "Lista vazia\n";
