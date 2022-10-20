@@ -27,6 +27,7 @@ void remPorData();
 void altNoX();
 void remNoK();
 void impNoDes();
+void remPorIdAnt();
 
 //programa principal
 int main(){
@@ -43,6 +44,7 @@ int main(){
         cout << "5- Alterar No com codigo igual a X\n";
         cout << "6- Remover No com codigo igual a K\n";
         cout << "7- Consultar No pelo nome do desenvolvedor\n";
+        cout << "8- Procurar um No por id e remover o anterior\n";
         cout << "\nDigite uma opcao: ";
         cin >> x;
         switch(x) {
@@ -76,6 +78,10 @@ int main(){
 
             case 7:
                 impNoDes();
+                break;
+
+            case 8:
+                remPorIdAnt();
                 break;
 
             default:  // demais opcoes
@@ -225,7 +231,7 @@ void remPorData(){
                 cout << "Dados nao confirmados\n";
         }
         else
-            cout << "Data nao encontrada\n";
+            cout << "Data nao pertence a lista\n";
     }
     else
         cout << "Lista vazia\n";
@@ -321,7 +327,38 @@ void impNoDes(){
         cout << "Lista vazia\n";
 }
 
-
+void remPorIdAnt(){
+    string buscId;
+    system("cls");
+    if(fim != -1){
+        cout << "Procurar um No por id e remover o anterior\n\n";
+        cout << "Id: ";
+        cin >> buscId;
+        i = 0;
+        while((i < fim) && (buscId!=lista[i].id))
+            i++;
+        if(buscId == lista[i].id){
+            cout << "Id encontrado - No " << i << endl;
+            cout << "Remocao do No " << i-1 << endl;
+            cout << "Confirma?[S][N] ";
+            cin >> conf;
+            if(conf == 'S'){
+                i = i - 1;
+                while (i < fim){
+                    lista[i] = lista[i+1];
+                    i++;
+                }
+                fim--;
+            }
+            else
+                cout << "Dados nao confirmados";
+        }
+        else
+            cout << "Id nao pertence a lista";
+    }
+    else
+        cout << "Lista vazia";
+}
 
 
 
