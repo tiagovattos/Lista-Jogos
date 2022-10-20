@@ -6,12 +6,12 @@ using namespace std;
 
 //tipos de dados
 struct jogos{
-    string nome, id, data, dev;  // troquei descricao por nome
+    string nome, id, data, dev;  // descricao foi trocado por nome
     float valor;
     };
 
 //definicao de constantes
-const int T = 10;
+const int T = 6;
 
 //definicao de variaveis globais
 jogos lista[T], val;
@@ -29,7 +29,7 @@ void remNoK();
 void impNoDes();
 void remPorIdAnt();
 void impVal200();
-
+void altNoNome();
 //programa principal
 int main(){
     preencher();
@@ -46,7 +46,8 @@ int main(){
         cout << "6- Remover No com codigo igual a K\n";
         cout << "7- Consultar No pelo nome do desenvolvedor\n";
         cout << "8- Procurar um No por id e remover o anterior\n";
-        cout << "9- Imprimir a quantidade de Nos impares com valor maior ou igual a R$200,00";
+        cout << "9- Imprimir a quantidade de Nos impares com valor maior ou igual a R$200,00\n";
+        cout << "10- Procurar um No por nome e alterar o seu conteudo\n";
         cout << "\nDigite uma opcao: ";
         cin >> x;
         switch(x) {
@@ -88,6 +89,10 @@ int main(){
 
             case 9:
                 impVal200();
+                break;
+
+            case 10:
+                altNoNome();
                 break;
 
             default:  // demais opcoes
@@ -342,21 +347,25 @@ void remPorIdAnt(){
         i = 0;
         while((i < fim) && (buscId!=lista[i].id))
             i++;
-        if(buscId == lista[i].id){
-            cout << "Id encontrado - No " << i << endl;
-            cout << "Remocao do No " << i-1 << endl;
-            cout << "Confirma?[S][N] ";
-            cin >> conf;
-            if(conf == 'S'){
-                i = i - 1;
-                while (i < fim){
-                    lista[i] = lista[i+1];
-                    i++;
+        if((buscId == lista[i].id)){
+            if(i != 0){
+                cout << "Id encontrado - No " << i << endl;
+                cout << "Remocao do No " << i-1 << endl;
+                cout << "Confirma?[S][N] ";
+                cin >> conf;
+                if(conf == 'S'){
+                    i = i - 1;
+                    while (i < fim){
+                        lista[i] = lista[i+1];
+                        i++;
+                    }
+                    fim--;
                 }
-                fim--;
+                else
+                    cout << "Dados nao confirmados";
             }
             else
-                cout << "Dados nao confirmados";
+                cout << "Id encontrado - No " << i << "\nNao e possivel remover o anterior, pois o No esta no inicio\n";
         }
         else
             cout << "Id nao pertence a lista";
@@ -379,7 +388,42 @@ void impVal200(){
         cout << "Lista vazia\n";
 }
 
-
+void altNoNome(){
+    string buscNome;
+    system("cls");
+    if(fim != -1){
+        cout << "Procurar um No por nome e alterar o seu conteudo\n";
+        cout << "Nome: ";
+        cin.ignore();
+        getline(cin, buscNome);
+        while((i < fim) && (buscNome != lista[i].nome))
+            i++;
+        if(buscNome == lista[i].nome){
+            cout << "Alterar no " << i;
+            cout << "\n\nNome: ";
+            getline(cin, val.nome);
+            cout << "id: ";
+            cin >> val.id;
+            cout << "Data de lancamento(DD/MM/AAAA): ";
+            cin >> val.data;
+            cout << "Desenvolvedora: ";
+            cin.ignore();
+            getline(cin, val.dev);
+            cout << "Valor: R$";
+            cin >> val.valor;
+            cout << "\nConfirma?[S][N] ";
+            cin >> conf;
+            if(conf == 'S')
+                lista[i] = val;
+            else
+                cout << "Dados nao confirmados\n";
+        }
+        else
+            cout << "Nome nao pertence a lista\n";
+    }
+    else
+        cout << "Lista vazia\n";
+}
 
 
 
