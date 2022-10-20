@@ -28,6 +28,7 @@ void altNoX();
 void remNoK();
 void impNoDes();
 void remPorIdAnt();
+void impVal200();
 
 //programa principal
 int main(){
@@ -45,6 +46,7 @@ int main(){
         cout << "6- Remover No com codigo igual a K\n";
         cout << "7- Consultar No pelo nome do desenvolvedor\n";
         cout << "8- Procurar um No por id e remover o anterior\n";
+        cout << "9- Imprimir a quantidade de Nos impares com valor maior ou igual a R$200,00";
         cout << "\nDigite uma opcao: ";
         cin >> x;
         switch(x) {
@@ -84,6 +86,10 @@ int main(){
                 remPorIdAnt();
                 break;
 
+            case 9:
+                impVal200();
+                break;
+
             default:  // demais opcoes
                 cout << "Opcao invalida.";
                 break;
@@ -98,12 +104,13 @@ int main(){
 void preencher(){
     //lista[n] = {"Nome", "Id", "Data", "Desenvolvedor", valor};fim++;
     lista[0] = {"God Of War", "19", "29/09/2024", "Santa Monica Studio", 230};fim++;
-    lista[1] = {"Mario", "5", "09/08/2023", "Nintendo", 50};fim++;
+    lista[1] = {"Mario", "5", "09/08/2023", "Nintendo", 250};fim++;
     lista[2] = {"Valorant", "8", "02/06/2021", "Riot Games", 0};fim++;
     lista[3] = {"Until Down", "17", "29/02/2018", "Supermassive Games", 130};fim++;
     lista[4] = {"The Last Of Us", "23", "09/04/2018", "Naughty Dog", 300};fim++;
-    lista[5] = {"League Of Legends", "7", "17/09/2010", "Riot Games", 0};fim++;
+    lista[5] = {"League Of Legends", "7", "17/09/2010", "Riot Games", 200};fim++;
 }
+
 void imprimir(){
     system("cls");
     if(fim != -1){
@@ -121,7 +128,6 @@ void imprimir(){
     else
         cout << "Lista vazia.\n";
 }
-
 
 void adcNoFim(){
     system("cls");  // limpar tela
@@ -152,7 +158,6 @@ void adcNoFim(){
     else
         cout << "Lista cheia\n";
 }
-
 
 void insPorNomeAnt(){
     string buscNome;
@@ -360,6 +365,19 @@ void remPorIdAnt(){
         cout << "Lista vazia";
 }
 
+void impVal200(){
+    int cont;
+    system("cls");
+    if(fim != -1){
+        for(i=0; i<=fim; i++)
+            if(i%2 == 1)
+                if(lista[i].valor >= 200)
+                    cont++;
+        cout << "Quantidade de Nos impares com valor maior ou igual a R$200,00: " << cont << endl;
+    }
+    else
+        cout << "Lista vazia\n";
+}
 
 
 

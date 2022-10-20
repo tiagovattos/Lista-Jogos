@@ -20,5 +20,5 @@ Definir Estrutura.
 4-(FEITO) Remover na K .
 5-(FEITO) Consultar nó pelo nome do desenvolvedor. 
 6-(FEITO) Procurar um nó por id e Remover o nó anterior ao nó encontrado.
-7- Imprimir a quantidade de nós impares com valor maior ou igual a R$200,00.
+7-(FEITO) Imprimir a quantidade de nós impares com valor maior ou igual a R$200,00.
 8- Procurar um nó por nome do descrição e alterar o seu conteúdo. 
