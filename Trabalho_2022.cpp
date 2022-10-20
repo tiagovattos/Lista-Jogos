@@ -26,6 +26,7 @@ void insPorNomeAnt();
 void remPorData();
 void altNoX();
 void remNoK();
+void impNoDes();
 
 //programa principal
 int main(){
@@ -41,6 +42,7 @@ int main(){
         cout << "4- Procurar um No por data de lancamento e remover\n";
         cout << "5- Alterar No com codigo igual a X\n";
         cout << "6- Remover No com codigo igual a K\n";
+        cout << "7- Consultar No pelo nome do desenvolvedor\n";
         cout << "\nDigite uma opcao: ";
         cin >> x;
         switch(x) {
@@ -72,6 +74,10 @@ int main(){
                 remNoK();
                 break;
 
+            case 7:
+                impNoDes();
+                break;
+
             default:  // demais opcoes
                 cout << "Opcao invalida.";
                 break;
@@ -90,6 +96,7 @@ void preencher(){
     lista[2] = {"Valorant", "8", "02/06/2021", "Riot Games", 0};fim++;
     lista[3] = {"Until Down", "17", "29/02/2018", "Supermassive Games", 130};fim++;
     lista[4] = {"The Last Of Us", "23", "09/04/2018", "Naughty Dog", 300};fim++;
+    lista[5] = {"League Of Legends", "7", "17/09/2010", "Riot Games", 0};fim++;
 }
 void imprimir(){
     system("cls");
@@ -286,6 +293,33 @@ void remNoK(){
         cout << "Lista vazia\n";
 }
 
+void impNoDes(){
+    string buscDev;
+    int cont=0;
+    system("cls");
+    if(fim != -1){
+        cout << "Consultar No pelo nome do desenvolvedor\n\n";
+        cout << "Desenvolvedor: ";
+        cin.ignore();
+        getline(cin, buscDev);
+        for(i=0; i<=fim; i++){
+            if(buscDev == lista[i].dev){
+                cout << "\nNo " << i << "\n\n";
+                cout << "Nome: " << lista[i].nome;
+                cout << "\nid: " << lista[i].id;
+                cout << "\nData de lancamento(DD/MM/AAAA): " << lista[i].data;
+                cout << "\nDesenvolvedora: " << lista[i].dev;
+                cout << "\nValor: R$" << lista[i].valor;
+                cout << "\n\n\n";
+                cont++;
+            }
+        }
+        if(cont == 0)
+            cout << "Nao ha jogos desse desenvolvedor cadastrados\n";
+    }
+    else
+        cout << "Lista vazia\n";
+}
 
 
 

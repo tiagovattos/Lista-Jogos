@@ -15,7 +15,7 @@ desenvolvedor.
 
 Definir Estrutura. 
 1-(FEITO) Procurar um nó por descrição e inserir um novo anterior ao nó encontrado.
-2-(FEITO) Procurar um nó por data de lançamento  e remover.
+2-(FEITO) Procurar um nó por data de lançamento e remover.
 3-(FEITO) Alterar um no com código igual a X. 
 4-(FEITO) Remover na K .
 5- Consultar nó pelo nome do desenvolvedor. 
