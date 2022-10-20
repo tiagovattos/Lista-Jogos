@@ -25,6 +25,7 @@ void adcNoFim();
 void insPorNomeAnt();
 void remPorData();
 void altNoX();
+void remNoK();
 
 //programa principal
 int main(){
@@ -38,7 +39,8 @@ int main(){
         cout << "2- Adicionar No ao final da lista\n";
         cout << "3- Procurar No por descricao e inserir um novo anterior ao no encontrado\n";
         cout << "4- Procurar um No por data de lancamento e remover\n";
-        cout << "5- Alterar No com codigo igual a X";
+        cout << "5- Alterar No com codigo igual a X\n";
+        cout << "6- Remover No com codigo igual a K\n";
         cout << "\nDigite uma opcao: ";
         cin >> x;
         switch(x) {
@@ -64,6 +66,10 @@ int main(){
 
             case 5:
                 altNoX();
+                break;
+
+            case 6:
+                remNoK();
                 break;
 
             default:  // demais opcoes
@@ -219,14 +225,14 @@ void remPorData(){
 }
 
 void altNoX(){
+    int X;
     system("cls");
-    int x;
     if(fim != -1){
-        cout << "Remover na posicao X\n\n";
+        cout << "Alterar na posicao X\n\n";
         cout << "Digite o valor de X: ";
-        cin >> x;
-        if((x >= 0) && (x <= fim)){
-            cout << "Alterar no " << x;
+        cin >> X;
+        if((X >= 0) && (X <= fim)){
+            cout << "Alterar no " << X;
             cout << "\n\nNome: ";
             cin.ignore();
             getline(cin, val.nome);
@@ -242,17 +248,43 @@ void altNoX(){
             cout << "\nConfirma?[S][N] ";
             cin >> conf;
             if(conf == 'S')
-                lista[x] = val;
+                lista[X] = val;
             else
                 cout << "Dados nao confirmados\n";
         }
         else
-            cout << "Nao ha No de posicao " << x << endl;
+            cout << "Nao ha No de posicao " << X << endl;
     }
     else
         cout << "Lista vazia\n";
 }
 
+void remNoK(){
+    int K;
+    system("cls");
+    if(fim != -1){
+        cout << "Remover na posicao K\n";
+        cout << "Digite o valor de K: ";
+        cin >> K;
+        if((K >= 0) && (K <= fim)){
+            cout << "\nConfirma?[S][N] ";
+            cin >> conf;
+            if(conf == 'S'){
+                while(K < fim){
+                    lista[K] = lista[K+1];
+                    K = K + 1;
+                }
+                fim--;
+            }
+            else
+                cout << "Dados nao confirmados\n";
+        }
+        else
+            cout << "Nao ha No de posicao " << K << endl;
+    }
+    else
+        cout << "Lista vazia\n";
+}
 
 
 
