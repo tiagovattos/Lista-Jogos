@@ -22,3 +22,5 @@ Definir Estrutura.
 6-(FEITO) Procurar um nó por id e Remover o nó anterior ao nó encontrado.
 7-(FEITO) Imprimir a quantidade de nós impares com valor maior ou igual a R$200,00.
 8-(FEITO) Procurar um nó por nome e alterar o seu conteúdo. 
+
+Revisar
