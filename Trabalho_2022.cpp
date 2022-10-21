@@ -11,7 +11,7 @@ struct jogos{
     };
 
 //definicao de constantes
-const int T = 6;
+const int T = 7;
 
 //definicao de variaveis globais
 jogos lista[T], val;
@@ -21,7 +21,7 @@ char conf;
 //prototipo de funcoes
 void preencher();
 void imprimir();
-void adcNoFim();
+void insNoFim();
 void insPorNomeAnt();
 void remPorData();
 void altNoX();
@@ -39,15 +39,15 @@ int main(){
         system("cls");
         cout << "\t\tLista de Jogos\n\n";
         cout << "\t0  - Sair\n";
-        cout << "\t1  - Imprimir\n";
-        cout << "\t2  - Adicionar No ao final da lista\n";
-        cout << "\t3  - Procurar No por descricao e inserir um novo anterior ao no encontrado\n";
+        cout << "\t1  - Imprimir lista\n";
+        cout << "\t2  - Inserir No ao final da lista\n";
+        cout << "\t3  - Procurar No por nome e inserir um novo anterior ao no encontrado\n";
         cout << "\t4  - Procurar um No por data de lancamento e remover\n";
         cout << "\t5  - Alterar No com codigo igual a X\n";
         cout << "\t6  - Remover No com codigo igual a K\n";
         cout << "\t7  - Consultar No pelo nome do desenvolvedor\n";
         cout << "\t8  - Procurar um No por id e remover o anterior\n";
-        cout << "\t9  - Imprimir a quantidade de Nos impares com valor maior ou igual a R$200,00\n";
+        cout << "\t9  - Imprimir a quantidade de Nos impares com valor maior ou igual a R$200.00\n";
         cout << "\t10 - Procurar um No por nome e alterar o seu conteudo\n";
         cout << "\n\tDigite uma opcao: ";
         cin >> x;
@@ -56,7 +56,7 @@ int main(){
 
             case 1: imprimir(); break;
 
-            case 2: adcNoFim(); break;
+            case 2: insNoFim(); break;
 
             case 3: insPorNomeAnt(); break;
 
@@ -96,76 +96,76 @@ void preencher(){
 void imprimir(){
     system("cls");
     cout << fixed << setprecision(2);
+    cout << "\t\tImprimir lista de Jogos\n\n";
     if(fim != -1){
         for(i=0; i<=fim; i++){
-            cout << "No " << i << "\n\n";
+            cout << "No " << i << "\n";
             cout << setw(28) << "Nome: " << lista[i].nome << endl;
             cout << setw(28) << "id: " << lista[i].id << endl;
             cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
-            cout << setw(28) << "Desenvolvedora: " << lista[i].dev << endl;
+            cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
             cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
             cout << endl;
         }
     }
-    else cout << "Lista vazia.\n";
+    else cout << "\tLista vazia\n";
 }
 
-void adcNoFim(){
+void insNoFim(){
     system("cls");  // limpar tela
+    cout << "\t\tInserir No ao final da lista\n";
     if(fim != T-1){
-        cout << "Adicionar no ao final da lista\n";
-        cout << "\n\nNovo No " << fim + 1 << "\n\n";
-        cout << "Nome: ";
+        cout << "\nNovo No " << fim + 1 << "\n";
+        cout << setw(28) << "Nome: ";
         cin.ignore();  // getline() funcionar corretamente
         getline(cin, val.nome);  // pega a linha inteira e nao da problema caso tenha espaços
-        cout << "id: ";
+        cout << setw(28) << "id: ";
         cin >> val.id;
-        cout << "Data de lancamento(DD/MM/AAAA): ";
+        cout << setw(28) << "Data de lancamento: ";
         cin >> val.data;
-        cout << "Desenvolvedora: ";
+        cout << setw(28) << "Desenvolvedor: ";
         cin.ignore();
         getline(cin, val.dev);
-        cout << "Valor: R$";
+        cout << setw(31) << "Valor: R$ ";
         cin >> val.valor;
-        cout << "\nConfirma?[S][N] ";
+        cout << "\n\tConfirma insercao?[S][N] ";
         cin >> conf;
         if(conf == 'S'){
             fim++;
             lista[fim] = val;
         }
-        else cout << "Dados nao confirmados\n";
+        else cout << "\tDados nao confirmados\n";
     }
-    else cout << "Lista cheia\n";
+    else cout << "\n\tLista cheia\n";
 }
 
 void insPorNomeAnt(){
     string buscNome;
     system("cls");
+    cout << "\t\tProcurar No por nome e inserir um novo anterior ao no encontrado\n\n";
     if(fim != T-1){
         if(fim != -1){
-            cout << "Procurar No por nome e inserir um novo anterior ao no encontrado.\n\n";
-            cout << "Nome: ";
+            cout << "\tNome: ";
             cin.ignore();
             getline(cin, buscNome);
             i = 0;
             while((i<fim) && (lista[i].nome != buscNome))
                 i++;
             if(lista[i].nome == buscNome){
-                system("cls");
-                cout << "Nome encontrado - No " << i;
+                cout << "\tNome encontrado - No " << i;
                 cout << "\n\nNovo No " << i << endl;
-                cout << "Nome: ";
-                getline(cin, val.nome);  // cin.ignore() comendo primeiro caractere
-                cout << "id: ";
+                cout << setw(28) << "Nome: ";
+                getline(cin, val.nome);
+                cout << setw(28) << "id: ";
                 cin >> val.id;
-                cout << "Data de lancamento(DD/MM/AAAA): ";
+                cout << setw(28) << "Data de lancamento: ";
                 cin >> val.data;
-                cout << "Desenvolvedora: ";
+                cout << setw(28) << "Desenvolvedor: ";
                 cin.ignore();
                 getline(cin, val.dev);
-                cout << "Valor: R$";
+                cout << setw(31) << "Valor: R$ ";
                 cin >> val.valor;
-                cout << "\nConfirma?[S][N] ";
+                cout << "\n\tConfirma insercao?[S][N] ";
                 cin >> conf;
                 if(conf == 'S'){
                     fim++;
@@ -176,29 +176,36 @@ void insPorNomeAnt(){
                     }
                     lista[i] = val;
                 }
-                else cout << "Dados nao confirmados.\n";
+                else cout << "\tDados nao confirmados\n";
             }
-            else cout << "Nome nao encontrado\n";
+            else cout << "\tNome nao encontrado\n";
         }
-        else cout << "Lista vazia.\n";
+        else cout << "\tLista vazia\n";
     }
-    else cout << "Lista cheia\n";
+    else cout << "\tLista cheia\n";
 }
 
 void remPorData(){
     string buscData;
     system("cls");
+    cout << fixed << setprecision(2);
+    cout << "\t\tProcurar No por data de lancamento e remover\n\n";
     if(fim != -1){
-        cout << "Procurar No por data de lancamento e remover\n\n";
-        cout << "Data de lancamento[DD/MM/AAAA]: ";
+        cout << "\tData de lancamento: ";
         cin >> buscData;
         i = 0;
         while((i<fim) && (lista[i].data != buscData))
             i++;
         if(lista[i].data == buscData){
-            system("cls");
-            cout << "Data encontrada\n\n";
-            cout << "Confirma remocao?[S][N] ";
+            cout << "\tData encontrada\n\n";
+            cout << "No " << i << "\n";
+            cout << setw(28) << "Nome: " << lista[i].nome << endl;
+            cout << setw(28) << "id: " << lista[i].id << endl;
+            cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
+            cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
+            cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
+            cout << endl;
+            cout << "\tConfirma remocao?[S][N] ";
             cin >> conf;
             if(conf == 'S'){
                 while(i<fim){
@@ -207,54 +214,67 @@ void remPorData(){
                 }
                 fim--;
             }
-            else cout << "Dados nao confirmados\n";
+            else cout << "\tDados nao confirmados\n";
         }
-        else cout << "Data nao pertence a lista\n";
+        else cout << "\tData nao encontrada\n";
     }
-    else cout << "Lista vazia\n";
+    else cout << "\tLista vazia\n";
 }
 
 void altNoX(){
     int X;
     system("cls");
+    cout << "\t\tAlterar na posicao X\n\n";
+    cout << fixed << setprecision(2);
     if(fim != -1){
-        cout << "Alterar na posicao X\n\n";
-        cout << "Digite o valor de X: ";
+        cout << "\tDigite o valor de X: ";
         cin >> X;
         if((X >= 0) && (X <= fim)){
-            cout << "Alterar no " << X;
-            cout << "\n\nNome: ";
+            cout << "\nNo " << X << "\n";
+            cout << setw(28) << "Nome: " << lista[X].nome << endl;
+            cout << setw(28) << "id: " << lista[X].id << endl;
+            cout << setw(28) << "Data de lancamento: " << lista[X].data << endl;
+            cout << setw(28) << "Desenvolvedor: " << lista[X].dev << endl;
+            cout << setw(31) << "Valor: R$ " << setw(6) << lista[X].valor << endl;
+            cout << "\nAlterar No " << X << endl;
+            cout << setw(28) << "Nome: ";
             cin.ignore();
             getline(cin, val.nome);
-            cout << "id: ";
+            cout << setw(28) << "id: ";
             cin >> val.id;
-            cout << "Data de lancamento(DD/MM/AAAA): ";
+            cout << setw(28) << "Data de lancamento: ";
             cin >> val.data;
-            cout << "Desenvolvedora: ";
+            cout << setw(28) << "Desenvolvedor: ";
             cin.ignore();
             getline(cin, val.dev);
-            cout << "Valor: R$";
+            cout << setw(31) << "Valor: R$ ";
             cin >> val.valor;
-            cout << "\nConfirma?[S][N] ";
+            cout << "\n\tConfirma?[S][N] ";
             cin >> conf;
             if(conf == 'S')
                 lista[X] = val;
-            else cout << "Dados nao confirmados\n";
+            else cout << "\tDados nao confirmados\n";
         }
-        else cout << "Nao ha No de posicao " << X << endl;
+        else cout << "\tNao ha No de posicao " << X << endl;
     }
-    else cout << "Lista vazia\n";
+    else cout << "\tLista vazia\n";
 }
 
 void remNoK(){
     int K;
     system("cls");
+    cout << "\t\tRemover na posicao K\n\n";
     if(fim != -1){
-        cout << "Remover na posicao K\n";
-        cout << "Digite o valor de K: ";
+        cout << "\tDigite o valor de K: ";
         cin >> K;
         if((K >= 0) && (K <= fim)){
-            cout << "\nConfirma?[S][N] ";
+            cout << "\nNo " << K << "\n";
+            cout << setw(28) << "Nome: " << lista[K].nome << endl;
+            cout << setw(28) << "id: " << lista[K].id << endl;
+            cout << setw(28) << "Data de lancamento: " << lista[K].data << endl;
+            cout << setw(28) << "Desenvolvedor: " << lista[K].dev << endl;
+            cout << setw(31) << "Valor: R$ " << setw(6) << lista[K].valor << endl;
+            cout << "\n\tConfirma?[S][N] ";
             cin >> conf;
             if(conf == 'S'){
                 while(K < fim){
@@ -263,118 +283,142 @@ void remNoK(){
                 }
                 fim--;
             }
-            else cout << "Dados nao confirmados\n";
+            else cout << "\tDados nao confirmados\n";
         }
-        else cout << "Nao ha No de posicao " << K << endl;
+        else cout << "\tNao ha No de posicao " << K << endl;
     }
-    else cout << "Lista vazia\n";
+    else cout << "\tLista vazia\n";
 }
 
 void impNoDes(){
     string buscDev;
     int cont=0;
     system("cls");
+    cout << "\t\tConsultar No pelo nome do desenvolvedor\n\n";
+    cout << fixed << setprecision(2);
     if(fim != -1){
-        cout << "Consultar No pelo nome do desenvolvedor\n\n";
-        cout << "Desenvolvedor: ";
+        cout << "\tDesenvolvedor: ";
         cin.ignore();
         getline(cin, buscDev);
         for(i=0; i<=fim; i++){
             if(buscDev == lista[i].dev){
-                cout << "\nNo " << i << "\n\n";
-                cout << "Nome: " << lista[i].nome;
-                cout << "\nid: " << lista[i].id;
-                cout << "\nData de lancamento(DD/MM/AAAA): " << lista[i].data;
-                cout << "\nDesenvolvedora: " << lista[i].dev;
-                cout << "\nValor: R$" << lista[i].valor;
-                cout << "\n\n\n";
+                cout << "\nNo " << i << "\n";
+                cout << setw(28) << "Nome: " << lista[i].nome << endl;
+                cout << setw(28) << "id: " << lista[i].id << endl;
+                cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
+                cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
+                cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
                 cont++;
             }
         }
         if(cont == 0)
-            cout << "Nao ha jogos desse desenvolvedor cadastrados\n";
+            cout << "\tNao ha jogos desse desenvolvedor cadastrados\n";
     }
-    else cout << "Lista vazia\n";
+    else cout << "\tLista vazia\n";
 }
 
 void remPorIdAnt(){
     string buscId;
     system("cls");
+    cout << "\t\tProcurar um No por id e remover o anterior\n\n";
+    cout << fixed << setprecision(2);
     if(fim != -1){
-        cout << "Procurar um No por id e remover o anterior\n\n";
-        cout << "Id: ";
+        cout << "\tId: ";
         cin >> buscId;
         i = 0;
         while((i < fim) && (buscId!=lista[i].id))
             i++;
         if((buscId == lista[i].id)){
             if(i != 0){
-                cout << "Id encontrado - No " << i << endl;
-                cout << "Remocao do No " << i-1 << endl;
-                cout << "Confirma?[S][N] ";
+                cout << "\tId encontrado - No " << i << endl;
+                i = i - 1;
+                cout << "\nRemocao do No " << i << endl;
+                cout << setw(28) << "Nome: " << lista[i].nome << endl;
+                cout << setw(28) << "id: " << lista[i].id << endl;
+                cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
+                cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
+                cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
+                cout << "\n\tConfirma?[S][N] ";
                 cin >> conf;
                 if(conf == 'S'){
-                    i = i - 1;
                     while(i < fim){
                         lista[i] = lista[i+1];
                         i++;
                     }
                     fim--;
                 }
-                else cout << "Dados nao confirmados";
+                else cout << "\tDados nao confirmados\n";
             }
-            else cout << "Id encontrado - No " << i << "\nNao e possivel remover o anterior, pois o No esta no inicio\n";
+            else cout << "\tId encontrado - No " << i << "\n\n\tNao e possivel remover o anterior, pois o No esta no inicio\n";
         }
-        else cout << "Id nao pertence a lista";
+        else cout << "\tId nao encontrado\n";
     }
-    else cout << "Lista vazia";
+    else cout << "\tLista vazia\n";
 }
 
 void impVal200(){
-    int cont;
+    int cont=0;
     system("cls");
+    cout << fixed << setprecision(2);
+    cout << "\t\tImprimir a quantidade de Nos impares com valor maior ou igual a R$200.00\n\n";
     if(fim != -1){
         for(i=0; i<=fim; i++)
             if(i%2 == 1)
-                if(lista[i].valor >= 200)
+                if(lista[i].valor >= 200){
                     cont++;
-        cout << "Quantidade de Nos impares com valor maior ou igual a R$200,00: " << cont << endl;
+                    cout << "No " << i << "\n";
+                    cout << setw(28) << "Nome: " << lista[i].nome << endl;
+                    cout << setw(28) << "id: " << lista[i].id << endl;
+                    cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
+                    cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
+                    cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
+                }
+        cout << "\n\tQuantidade de Nos impares com valor maior ou igual a R$200.00: " << cont << endl;
     }
-    else cout << "Lista vazia\n";
+    else cout << "\tLista vazia\n";
 }
 
 void altNoNome(){
     string buscNome;
     system("cls");
+    cout << "\t\tProcurar um No por nome e alterar o seu conteudo\n";
+    cout << fixed << setprecision(2);
     if(fim != -1){
-        cout << "Procurar um No por nome e alterar o seu conteudo\n";
-        cout << "Nome: ";
+        cout << "\n\tNome: ";
         cin.ignore();
         getline(cin, buscNome);
+        i = 0;
         while((i < fim) && (buscNome != lista[i].nome))
             i++;
         if(buscNome == lista[i].nome){
-            cout << "Alterar no " << i;
-            cout << "\n\nNome: ";
+            cout << "\nNo " << i << "\n";
+            cout << setw(28) << "Nome: " << lista[i].nome << endl;
+            cout << setw(28) << "id: " << lista[i].id << endl;
+            cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
+            cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
+            cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
+            cout << endl;
+            cout << "Alterar No " << i << endl;
+            cout << setw(28) << "Nome: ";
             getline(cin, val.nome);
-            cout << "id: ";
+            cout << setw(28) << "id: ";
             cin >> val.id;
-            cout << "Data de lancamento(DD/MM/AAAA): ";
+            cout << setw(28) << "Data de lancamento: ";
             cin >> val.data;
-            cout << "Desenvolvedora: ";
+            cout << setw(28) << "Desenvolvedor: ";
             cin.ignore();
             getline(cin, val.dev);
-            cout << "Valor: R$";
+            cout << setw(31) << "Valor: R$ ";
             cin >> val.valor;
-            cout << "\nConfirma?[S][N] ";
+            cout << "\n\tConfirma?[S][N] ";
             cin >> conf;
             if(conf == 'S')
                 lista[i] = val;
-            else cout << "Dados nao confirmados\n";
+            else cout << "\tDados nao confirmados\n";
         }
-        else cout << "Nome nao pertence a lista\n";
+        else cout << "\tNome nao encontrado\n";
     }
-    else cout << "Lista vazia\n";
+    else cout << "\n\tLista vazia\n";
 }
 
 
