@@ -11,7 +11,7 @@ struct jogos{
     };
 
 //definicao de constantes
-const int T = 7;
+const int T = 10;
 
 //definicao de variaveis globais
 jogos lista[T], val;
@@ -249,7 +249,7 @@ void altNoX(){
             getline(cin, val.dev);
             cout << setw(31) << "Valor: R$ ";
             cin >> val.valor;
-            cout << "\n\tConfirma?[S][N] ";
+            cout << "\n\tConfirma alteracao?[S][N] ";
             cin >> conf;
             if(conf == 'S')
                 lista[X] = val;
@@ -264,6 +264,7 @@ void remNoK(){
     int K;
     system("cls");
     cout << "\t\tRemover na posicao K\n\n";
+    cout << fixed << setprecision(2);
     if(fim != -1){
         cout << "\tDigite o valor de K: ";
         cin >> K;
@@ -274,7 +275,7 @@ void remNoK(){
             cout << setw(28) << "Data de lancamento: " << lista[K].data << endl;
             cout << setw(28) << "Desenvolvedor: " << lista[K].dev << endl;
             cout << setw(31) << "Valor: R$ " << setw(6) << lista[K].valor << endl;
-            cout << "\n\tConfirma?[S][N] ";
+            cout << "\n\tConfirma remocao?[S][N] ";
             cin >> conf;
             if(conf == 'S'){
                 while(K < fim){
@@ -338,7 +339,7 @@ void remPorIdAnt(){
                 cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
                 cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
                 cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
-                cout << "\n\tConfirma?[S][N] ";
+                cout << "\n\tConfirma remocao?[S][N] ";
                 cin >> conf;
                 if(conf == 'S'){
                     while(i < fim){
@@ -371,9 +372,9 @@ void impVal200(){
                     cout << setw(28) << "id: " << lista[i].id << endl;
                     cout << setw(28) << "Data de lancamento: " << lista[i].data << endl;
                     cout << setw(28) << "Desenvolvedor: " << lista[i].dev << endl;
-                    cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << endl;
+                    cout << setw(31) << "Valor: R$ " << setw(6) << lista[i].valor << "\n\n";
                 }
-        cout << "\n\tQuantidade de Nos impares com valor maior ou igual a R$200.00: " << cont << endl;
+        cout << "\tQuantidade de Nos impares com valor maior ou igual a R$200.00: " << cont << endl;
     }
     else cout << "\tLista vazia\n";
 }
@@ -410,7 +411,7 @@ void altNoNome(){
             getline(cin, val.dev);
             cout << setw(31) << "Valor: R$ ";
             cin >> val.valor;
-            cout << "\n\tConfirma?[S][N] ";
+            cout << "\n\tConfirma alteracao?[S][N] ";
             cin >> conf;
             if(conf == 'S')
                 lista[i] = val;
@@ -420,6 +421,3 @@ void altNoNome(){
     }
     else cout << "\n\tLista vazia\n";
 }
-
-
-
