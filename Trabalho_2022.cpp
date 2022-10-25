@@ -41,7 +41,7 @@ int main(){
         cout << "\t0  - Sair\n";
         cout << "\t1  - Imprimir lista\n";
         cout << "\t2  - Inserir No ao final da lista\n";
-        cout << "\t3  - Procurar No por nome e inserir um novo anterior ao no encontrado\n";
+        cout << "\t3  - Procurar No por nome e inserir um novo anterior ao No encontrado\n";
         cout << "\t4  - Procurar um No por data de lancamento e remover\n";
         cout << "\t5  - Alterar No com codigo igual a X\n";
         cout << "\t6  - Remover No com codigo igual a K\n";
@@ -85,12 +85,12 @@ int main(){
 //corpo das funcoes
 void preencher(){
     //lista[n] = {"Nome", "Id", "Data", "Desenvolvedor", valor};fim++;
-    lista[0] = {"God Of War", "19", "29/09/2024", "Santa Monica Studio", 230};fim++;
-    lista[1] = {"Mario", "5", "09/08/2023", "Nintendo", 250};fim++;
-    lista[2] = {"Valorant", "8", "02/06/2021", "Riot Games", 0};fim++;
-    lista[3] = {"Until Down", "17", "29/02/2018", "Supermassive Games", 130};fim++;
-    lista[4] = {"The Last Of Us", "23", "09/04/2018", "Naughty Dog", 300};fim++;
-    lista[5] = {"League Of Legends", "7", "17/09/2010", "Riot Games", 200};fim++;
+    lista[0] = {"God Of War", "19", "20/08/2018", "Santa Monica Studio", 349.90};fim++;
+    lista[1] = {"Super Mario Bros", "5", "13/09/1985", "Nintendo", 220};fim++;
+    lista[2] = {"Valorant", "8", "02/06/2020", "Riot Games", 0};fim++;
+    lista[3] = {"Until Down", "17", "04/08/2015", "Supermassive Games", 209.90};fim++;
+    lista[4] = {"The Last Of Us", "23", "14/06/2013", "Naughty Dog", 39.90};fim++;
+    lista[5] = {"League Of Legends", "7", "27/10/2009", "Riot Games", 0};fim++;
 }
 
 void imprimir(){
